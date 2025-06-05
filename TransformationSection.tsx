@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { Button } from "@/components/ui/button";
 
-const TransformationSection = () => {
+const CallToActionSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -21,82 +22,56 @@ const TransformationSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const testimonials = [
-    {
-      quote: "I became who I was afraid to be.",
-      name: "Marcus",
-      transformation: "Lost 45lbs, Gained Confidence",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-      quote: "Every scar tells a story of victory.",
-      name: "Sarah",
-      transformation: "From Burnout to Beast Mode",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b5e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-      quote: "The pain was temporary. The pride is forever.",
-      name: "David",
-      transformation: "Deadlifted 500lbs at 45",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    }
-  ];
-
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="font-display text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            HUMAN
-            <span className="block text-primary">EVOLUTION</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Witness the metamorphosis. These are the faces of transformation.
-          </p>
+    <section ref={sectionRef} className="relative py-32 bg-black overflow-hidden">
+      {/* Background Video Placeholder */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1583500178690-f7d24219ce92?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+          }}
+        >
+          <div className="absolute inset-0 bg-black/80" />
         </div>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={testimonial.name}
-              className={`group transition-all duration-1000 delay-${index * 200} ${
-                isVisible ? 'animate-scale-in' : 'opacity-0'
-              }`}
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 z-10">
+        <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-primary rounded-full animate-pulse-glow" />
+        <div className="absolute bottom-1/3 left-1/4 w-1 h-1 bg-accent rounded-full animate-float" />
+      </div>
+
+      <div className="relative z-20 max-w-4xl mx-auto text-center px-6">
+        <div className={`transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <h2 className="font-display text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-none">
+            BECOME A
+            <span className="block text-primary">MEMBER</span>
+          </h2>
+          
+          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Join the elite. Train with champions. Transform your limits.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-white font-display font-semibold text-lg px-12 py-6 glow-effect transition-all duration-300 transform hover:scale-105"
             >
-              <div className="relative overflow-hidden rounded-lg">
-                <div className="aspect-square">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
-                  />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                  
-                  {/* Content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-8">
-                    <blockquote className="text-white text-xl font-medium mb-4 italic leading-relaxed">
-                      "{testimonial.quote}"
-                    </blockquote>
-                    
-                    <div className="border-l-4 border-primary pl-4">
-                      <h4 className="text-white font-display text-lg font-semibold">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-primary text-sm font-medium tracking-wide">
-                        {testimonial.transformation}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+              START YOUR JOURNEY
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-2 border-white text-white hover:bg-white hover:text-black font-display font-semibold text-lg px-12 py-6 transition-all duration-300 transform hover:scale-105"
+            >
+              TRAIN WITH US
+            </Button>
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default TransformationSection;
+export default CallToActionSection;
